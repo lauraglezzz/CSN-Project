@@ -1,4 +1,8 @@
-from metrics.partition_metrics import compute_nmi, compute_ari
+from metrics.partition_metrics import (
+    compute_nmi,
+    compute_ami,
+    compute_ari
+)
 
 # Fake partitions (simple and controlled)
 partition_before = {
@@ -16,7 +20,9 @@ partition_after = {
 }
 
 nmi = compute_nmi(partition_before, partition_after)
+ami = compute_ami(partition_before, partition_after)
 ari = compute_ari(partition_before, partition_after)
 
 print("NMI:", nmi)
+print("AMI:", ami)
 print("ARI:", ari)

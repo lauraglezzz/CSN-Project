@@ -1,4 +1,8 @@
-from sklearn.metrics import normalized_mutual_info_score, adjusted_rand_score
+from sklearn.metrics import (
+    normalized_mutual_info_score,
+    adjusted_mutual_info_score,
+    adjusted_rand_score
+)
 
 
 def _partition_dict_to_labels(partition):
@@ -26,17 +30,7 @@ def compute_nmi(partition_before, partition_after):
     Compute Normalized Mutual Information (NMI)
     between two partitions.
 
-    Parameters
-    ----------
-    partition_before : dict
-        Mapping node -> community_id (before perturbation)
-    partition_after : dict
-        Mapping node -> community_id (after perturbation)
-
-    Returns
-    -------
-    nmi : float
-        Normalized Mutual Information score
+    NOTE: Kept for completeness and comparison purposes.
     """
     labels_before = _partition_dict_to_labels(partition_before)
     labels_after = _partition_dict_to_labels(partition_after)
@@ -44,22 +38,21 @@ def compute_nmi(partition_before, partition_after):
     return normalized_mutual_info_score(labels_before, labels_after)
 
 
+def compute_ami(partition_before, partition_after):
+    """
+    Compute Adjusted Mutual Information (AMI)
+    between two partitions.
+    """
+    labels_before = _partition_dict_to_labels(partition_before)
+    labels_after = _partition_dict_to_labels(partition_after)
+
+    return adjusted_mutual_info_score(labels_before, labels_after)
+
+
 def compute_ari(partition_before, partition_after):
     """
     Compute Adjusted Rand Index (ARI)
     between two partitions.
-
-    Parameters
-    ----------
-    partition_before : dict
-        Mapping node -> community_id (before perturbation)
-    partition_after : dict
-        Mapping node -> community_id (after perturbation)
-
-    Returns
-    -------
-    ari : float
-        Adjusted Rand Index score
     """
     labels_before = _partition_dict_to_labels(partition_before)
     labels_after = _partition_dict_to_labels(partition_after)
