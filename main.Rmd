@@ -1,0 +1,66 @@
+```{r}
+source("simulations.R")
+source("spectral.R")
+source("perturbations.R")
+
+#install.packages("netUtils")
+library(netUtils)
+library(igraph)
+```
+
+# Setup Networks
+
+```{r}
+set.seed(123)
+n <- 1000
+p <- 0.02
+
+# Erdos-Renyi Graph
+g_er <- sample_gnp(n, p, directed = FALSE)
+
+# Barabasi-Albert Graph
+g_ba <- sample_pa(n, directed = FALSE)
+
+# LFR Graph
+g_lfr <- sample_lfr(n = 1000, tau1 = 2, tau2 = 1, mu = 0.1, average_degree = 10, max_degree = 50, min_community = 20, max_community = 60)
+```
+
+## Plot Degree Distributions and Graphs
+
+```{r}
+plot(g_er, vertex.size = 2, vertex.label = NA, main = "Erdos-Renyi Graph")
+plot(degree_distribution(g_er), main = "Erdos-Renyi Degree Distribution", xlab = "Degree", ylab = "Frequency")
+
+plot(g_ba, vertex.size = 2, vertex.label = NA, main = "Barabasi-Albert Graph")
+plot(degree_distribution(g_ba), main = "Barabasi-Albert Degree Distribution", xlab = "Degree", ylab = "Frequency")
+
+plot(g_lfr, vertex.size = 2, vertex.label = NA, main = "LFR Graph")
+plot(degree_distribution(g_lfr), main = "LFR Degree Distribution", xlab = "Degree", ylab = "Frequency")
+```
+
+# Setup and Run Simulations
+
+```{r}
+perturbations <- list(del = edge_removal,
+                      add = edge_addition,
+                      rewire = edge_rewiring)
+fractions <- c(0.01, 0.02, 0.03, 0.05)
+
+cluster.algs <- list(louvain = cluster_louvain,
+                     leiden = cluster_leiden,
+                     infomap = cluster_infomap,
+                     spectral = spectral_clustering_shi_malik,
+                     girvan_newman = cluster_edge_betweenness)
+
+stoc.algs <- list(louvain = TRUE,
+                  leiden = TRUE,
+                  infomap = TRUE,
+                  spectral = TRUE,
+                  girvan_newman = FALSE)
+```
+
+```{r}
+results_er <- run_simulations(g_er, "ER", perturbations, fractions, cluster.algs, stoc.algs, iter.pert = 100, iter.stoc = 50)
+results_ba <- run_simulations(g_ba, "BA", perturbations, fractions, cluster.algs, stoc.algs, iter.pert = 100, iter.stoc = 50)
+results_lfr <- run_analysis(g_lfr, "LFR", perturbations, fractions, cluster.algs, stoc.algs, iter.pert = 100, iter.stoc = 50)
+```
