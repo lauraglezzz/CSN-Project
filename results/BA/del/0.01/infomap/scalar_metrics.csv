@@ -1,0 +1,7 @@
+"metric","mean","sd_total","sd_between","sd_within","se"
+"NMI",NA,NA,NA,NA,NA
+"ARI",1,0,0,0,0
+"AMI",NA,NA,NA,NA,NA
+"NID",NA,NA,NA,NA,NA
+"Jaccard",1,0,0,0,0
+"proportion.moved",0,0,0,0,0
