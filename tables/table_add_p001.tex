@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\caption{Partition-level stability under edge add ($p=0.01$).}
+\label{tab:add_p001}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+Network & Algorithm & NMI & ARI & AMI & NID & Jaccard & Prop. moved \\
+\midrule
+BA & Girvan--Newman & 0.5836 & 0.1050 & 0.2587 & 0.4164 & 0.2164 & 0.7123 \\
+BA & Infomap & NA & 1.0000 & NA & NA & 1.0000 & 0.0000 \\
+BA & Leiden & 0.1051 & 0.0480 & 0.0852 & 0.8949 & 0.1440 & 0.7963 \\
+BA & Louvain & 0.0985 & 0.0445 & 0.0772 & 0.9015 & 0.1420 & 0.7980 \\
+BA & Spectral & 0.5750 & 0.6596 & 0.5747 & 0.4250 & 0.8277 & 0.0953 \\
+ER & Girvan--Newman & 0.6702 & 0.1138 & 0.2536 & 0.3298 & 0.2798 & 0.6587 \\
+ER & Infomap & 0.5387 & 0.1250 & 0.2838 & 0.4613 & 0.1970 & 0.7329 \\
+ER & Leiden & 0.1248 & 0.0392 & 0.0936 & 0.8752 & 0.1176 & 0.8352 \\
+ER & Louvain & 0.1154 & 0.0316 & 0.0804 & 0.8846 & 0.1089 & 0.8469 \\
+ER & Spectral & 0.5569 & 0.6628 & 0.5566 & 0.4431 & 0.8290 & 0.0956 \\
+LFR & Girvan--Newman & 0.9997 & 0.9996 & 0.9996 & 0.0003 & 0.9996 & 0.0002 \\
+LFR & Infomap & 1.0000 & 1.0000 & 1.0000 & 0.0000 & 1.0000 & 0.0000 \\
+LFR & Leiden & 0.9998 & 0.9996 & 0.9997 & 0.0002 & 0.9995 & 0.0005 \\
+LFR & Louvain & 0.9972 & 0.9950 & 0.9968 & 0.0028 & 0.9934 & 0.0061 \\
+LFR & Spectral & 0.9231 & 0.7175 & 0.9123 & 0.0769 & 0.7667 & 0.2102 \\
+\bottomrule
+\end{tabular}}
+\end{table}
